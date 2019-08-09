@@ -90,9 +90,9 @@
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="8"
         android:onClick="addToScreen"
-        app:layout_constraintStart_toEndOf="@+id/button7"
+        android:text="8"
+        app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
 
     <Button
@@ -108,12 +108,23 @@
 
     <Button
         android:id="@+id/button7"
+        android:layout_width="211dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:onClick="addToScreen"
+        android:text="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button9" />
+
+    <Button
+        android:id="@+id/button3"
         android:layout_width="63dp"
         android:layout_height="60dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
-        android:text="7"
         android:onClick="addToScreen"
+        android:text="7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
@@ -137,6 +148,7 @@
         android:layout_marginEnd="8dp"
         android:background="#CFCFCF"
         android:contextClickable="true"
+        android:maxLength="5"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
