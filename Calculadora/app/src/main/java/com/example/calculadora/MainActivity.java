@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
     private Number valorB = 0;
     private char operacaoAtual = '+';
     private Number resultado;
-    private boolean ultimoDigito = false;//true numero false sinal
     private TextView txtValor;
     private TextView txtValor2;
 
@@ -27,16 +26,12 @@ public class MainActivity extends AppCompatActivity {
         this.txtValor2 = findViewById(R.id.txtValor2);
     }
 
-    public int primeiroPasso(View v){
+    public void primeiroPasso(View v){
         Button b = (Button)v;
-
-        if (this.valorA == null ||  !this.ultimoDigito) {
-            this.operacaoAtual = b.getText().charAt(0);
-            this.ultimoDigito = true;
-        }
 
         if (!(Integer.parseInt(this.txtValor.getText().toString()) == 0)) {
             if (this.valorA == null) {
+                this.operacaoAtual = b.getText().charAt(0);
                 this.valorA = Double.parseDouble(this.txtValor.getText().toString());
                 this.txtValor.setText("0");
                 this.txtValor2.setText(this.valorA.doubleValue() + " " + this.operacaoAtual);
@@ -45,15 +40,16 @@ public class MainActivity extends AppCompatActivity {
             {
                 this.valorB = Double.parseDouble(this.txtValor.getText().toString());
                 this.resultado = calcula(this.valorA, this.valorB);
-                this.txtValor2.setText(Double.toString(resultado.doubleValue()) + " " + this.operacaoAtual);
+                this.operacaoAtual = b.getText().charAt(0);
+                this.txtValor2.setText(resultado.doubleValue() + " " + this.operacaoAtual);
                 this.txtValor.setText("0");
                 this.valorA = this.resultado;
-                this.ultimoDigito = false;
                 this.valorB = 0;
             }
 
         } else {
             if (this.valorA == null) {
+                this.operacaoAtual = b.getText().charAt(0);
                 this.valorA = 0;
                 this.txtValor.setText("0");
                 this.txtValor2.setText(this.valorA.doubleValue() + " " + this.operacaoAtual);
@@ -63,10 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 this.txtValor2.setText(this.valorA.doubleValue() + " " + this.operacaoAtual);
             }
         }
-        return 0;
     }
 
-    public int addToScreen(View v){
+    public void addToScreen(View v){
         Button b = (Button) v;
         int content = Integer.parseInt(this.txtValor.getText().toString());
         if(content != 0) {
@@ -74,16 +69,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             this.txtValor.setText(b.getText().toString());
         }
-
-        return 0;
     }
 
     public void clear(View v){
         this.valorA = null;
-
         this.valorB = 0;
         this.operacaoAtual = '+';
-        this.ultimoDigito = false;
         this.txtValor.setText("0");
         this.txtValor2.setText("");
     }
@@ -111,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         return 0;
     }
 
-    public int pressIgual(View v){
+    public void pressIgual(View v){
         if (this.valorA == null){
             this.valorA = 0;
         }
@@ -123,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
         this.txtValor2.setText(Double.toString(calcula(this.valorA, this.valorB).doubleValue()));
         this.txtValor2.append(" " + this.operacaoAtual);
         this.txtValor.setText("0");
-        this.ultimoDigito = false;
-        return 0;
     }
 
 }
